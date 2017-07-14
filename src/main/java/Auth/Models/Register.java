@@ -1,4 +1,4 @@
-package hello;
+package Auth.Models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,11 +9,14 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+import Auth.Comment.Matches;
+
 @Entity // This tells Hibernate to make a table out of this class
-public class User {
+@Matches(field="password", verifyField="confirmPassword",message = "密码必须一致")
+public class Register {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    private long id;
 
     @NotNull
     @Size(min=2, max=30)
@@ -27,7 +30,10 @@ public class User {
     @Size (min=6, max=20)
     private String password;
     
-	public Integer getId() {
+    @Size (min=6, max=20)
+    private String confirmPassword;
+    
+	public long getId() {
 		return id;
 	}
 
@@ -47,8 +53,20 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.name = password;
+		this.password = password;
 	}
+	
+	
+	public String getconfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setconfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	
+	
+	
 	public String getEmail() {
 		return email;
 	}

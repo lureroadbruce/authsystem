@@ -7,7 +7,7 @@
 
 <body>
 
-	 <form  th:action="@{/register}" th:object="${user}" method="post">
+	 <form  th:action="@{/register}" th:object="${register}" method="post">
 		<p>用户注册页面：</p>
 		<table width="60%" align="center">
 			<colgroup>
@@ -23,6 +23,11 @@
 				<th>密码：</th>
 				 <td><input type="text" th:field="*{password}" /></td>
                     <td th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</td>
+			</tr>
+			<tr>
+				<th>确认密码：</th>
+				 <td><input type="text" th:field="*{confirmPassword}" /></td>
+                    <td th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">Password Error</td>
 			</tr>
 			<tr>
 				<th>邮箱：</th>
